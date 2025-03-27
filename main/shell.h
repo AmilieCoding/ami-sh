@@ -10,10 +10,12 @@
 
 #define MAX_ARGS 10
 
+void load_config();
 void shell_loop();
 char **parse_input(char *line);
 void execute_command(char **args);
 int handle_builtin(char **args);
+void replace_aliases(char **args);
 
 void free_arguments(char **args);
 

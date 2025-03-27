@@ -1,7 +1,11 @@
 #include "shell.h"
+#include <readline/readline.h>
+#include <readline/history.h>
+
 
 // -> Main thing, duh :3
 int main() {
+    load_config();
     shell_loop();
     return 0;
 }
@@ -13,14 +17,18 @@ void shell_loop() {
     char **args;
 
     while (1) {
-        printf("ami-sh $ ");
-        getline(&line, &len, stdin);
-
-        args = parse_input(line);
+        printf("%s ", getenv("PROMPT") ? getenv("PROMPT") : "ami-sh $");
+    
+        char *line = readline(NULL);
+        char **args = parse_input(line);
+        
+        // -> Replacing aliases before running! **IMPORTANT!!!**
+        replace_aliases(args);
+    
         if (!handle_builtin(args)) {
             execute_command(args);
         }
+    
+        free(line);
     }
-
-    free(line);
-}
+}    
