@@ -1,0 +1,7 @@
+# Default configuration file for AMI-SH
+
+# You can set the prompt to be whatever you want here!
+export PROMPT=ami-sh $ 
+
+# And you can add aliases here!
+alias list="ls"
