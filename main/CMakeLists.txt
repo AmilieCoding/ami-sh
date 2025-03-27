@@ -7,18 +7,20 @@ project(AMI-SH)
 # Set C standard
 set(CMAKE_C_STANDARD 99)
 
-# Add source files and include subdirectories
-# Here we add the subfolders with source files (e.g., utilities and builtins)
+# Add source files
 file(GLOB SOURCES 
     "main.c"
     "utilities/parser.c"
     "utilities/executor.c"
+    "utilities/config.c"
     "builtins/builtins.c"
 )
 
-# Add include directories (if necessary)
-# Here we include the current directory so the header files can be found
+# Add include directories
 include_directories(${CMAKE_SOURCE_DIR})
 
 # Create the executable
 add_executable(ami-sh ${SOURCES})
+
+# Link readline (must be after add_executable)
+target_link_libraries(ami-sh readline)
