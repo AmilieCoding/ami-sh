@@ -13,6 +13,7 @@ file(GLOB SOURCES
     "utilities/parser.c"
     "utilities/executor.c"
     "utilities/config.c"
+    "utilities/completion.c"
     "builtins/builtins.c"
 )
 
