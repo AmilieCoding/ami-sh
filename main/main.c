@@ -1,7 +1,4 @@
 #include "shell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
-
 
 // -> Main thing, duh :3
 int main() {
@@ -16,8 +13,11 @@ void shell_loop() {
     size_t len = 0;
     char **args;
 
+    rl_attempted_completion_function = ami_completion;
+
     while (1) {
         printf("%s ", getenv("PROMPT") ? getenv("PROMPT") : "ami-sh $");
+        fflush(stdout);
     
         char *line = readline(NULL);
         char **args = parse_input(line);
